@@ -12,29 +12,25 @@ class MyApp extends StatelessWidget {
           title: Text('Flutter layout demo'),
         ),
         body: Center(
-          child: buildColumn(),
+          child: buildExpandedImages(),
         ),
       ),
     );
   }
 
-  Widget buildRow() =>
+  Widget buildExpandedImages() =>
       Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('images/pic1.jpg'),
-          Image.asset('images/pic2.jpg'),
-          Image.asset('images/pic3.jpg'),
-        ],
-      );
-
-  Widget buildColumn() =>
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Image.asset('images/pic1.jpg'),
-          Image.asset('images/pic2.jpg'),
-          Image.asset('images/pic3.jpg'),
+          Expanded(
+            child: Image.asset('images/pic1.jpg'),
+          ),
+          Expanded(
+            child: Image.asset('images/pic2.jpg'),
+          ),
+          Expanded(
+            child: Image.asset('images/pic3.jpg'),
+          ),
         ],
       );
 }
