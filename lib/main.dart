@@ -12,13 +12,13 @@ class MyApp extends StatelessWidget {
           title: Text('Flutter layout demo'),
         ),
         body: Center(
-          child: buildExpandedImages(),
+          child: buildExpandedImagesWithFlex(),
         ),
       ),
     );
   }
 
-  Widget buildExpandedImages() =>
+  Widget buildExpandedImagesWithFlex() =>
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
             child: Image.asset('images/pic1.jpg'),
           ),
           Expanded(
+            flex: 2,
             child: Image.asset('images/pic2.jpg'),
           ),
           Expanded(
