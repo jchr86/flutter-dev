@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
           title: Text('Flutter layout demo'),
         ),
         body: Center(
-          child: buildRow(),
+          child: buildColumn(),
         ),
       ),
     );
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget buildRow() =>
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
+        children: [
           Image.asset('images/pic1.jpg'),
           Image.asset('images/pic2.jpg'),
           Image.asset('images/pic3.jpg'),
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget buildColumn() =>
       Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
+        children: [
           Image.asset('images/pic1.jpg'),
           Image.asset('images/pic2.jpg'),
           Image.asset('images/pic3.jpg'),
