@@ -7,157 +7,42 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter layout demo',
-      home: buildHomePage('Strawberry Pavlova Recipe'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Flutter layout demo'),
+        ),
+        body: Center(child: _buildImageColumn(),),
+      )
     );
   }
 
-  Widget buildHomePage(String title) {
-    final titleText = Container(
-      padding: EdgeInsets.all(20),
-      child: Text(
-        'Strawberry Pavlova',
-        style: TextStyle(
-          fontWeight: FontWeight.w800,
-          letterSpacing: 0.5,
-          fontSize: 30,
-        ),
-      ),
-    );
-
-    final subTitle = Text(
-      'Pavlova is a meringue-based dessert named after the Russian ballerina '
-          'Anna Pavlova. Pavlova features a crisp crust and soft, light inside, '
-          'topped with fruit and whipped cream.',
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontFamily: 'Georgia',
-        fontSize: 25,
-      ),
-    );
-
-    // #docregion ratings, stars
-    var stars = Row(
-      mainAxisSize: MainAxisSize.min,
+  Widget _buildImageColumn() => Container(
+    decoration: BoxDecoration(
+      color: Colors.black26,
+    ),
+    child: Column(
       children: [
-        Icon(Icons.star, color: Colors.green[500]),
-        Icon(Icons.star, color: Colors.green[500]),
-        Icon(Icons.star, color: Colors.green[500]),
-        Icon(Icons.star, color: Colors.black),
-        Icon(Icons.star, color: Colors.black),
+        _buildImageRow(1),
+        _buildImageRow(3),
       ],
-    );
-    // #enddocregion stars
+    ),
+  );
 
-    final ratings = Container(
-      padding: EdgeInsets.all(20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          stars,
-          Text(
-            '170 Reviews',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w800,
-              fontFamily: 'Roboto',
-              letterSpacing: 0.5,
-              fontSize: 20,
-            ),
-          ),
-        ],
+  Widget _buildDecoratedImage(int imageIndex) => Expanded(
+    child: Container(
+      decoration: BoxDecoration(
+        border: Border.all(width: 10, color: Colors.black38),
+        borderRadius: const BorderRadius.all(const Radius.circular(8))
       ),
-    );
-    // #enddocregion ratings
+      margin: const EdgeInsets.all(4),
+      child: Image.asset('images/pic$imageIndex.jpg'),
+    ),
+  );
 
-    // #docregion iconList
-    final descTextStyle = TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.w800,
-      fontFamily: 'Roboto',
-      letterSpacing: 0.5,
-      fontSize: 18,
-      height: 2,
-    );
-
-    // DefaultTextStyle.merge() allows you to create a default text
-    // style that is inherited by its child and all subsequent children.
-    final iconList = DefaultTextStyle.merge(
-      style: descTextStyle,
-      child: Container(
-        padding: EdgeInsets.all(20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              children: [
-                Icon(Icons.kitchen, color: Colors.green[500]),
-                Text('PREP:'),
-                Text('25 min'),
-              ],
-            ),
-            Column(
-              children: [
-                Icon(Icons.timer, color: Colors.green[500]),
-                Text('COOK:'),
-                Text('1 hr'),
-              ],
-            ),
-            Column(
-              children: [
-                Icon(Icons.restaurant, color: Colors.green[500]),
-                Text('FEEDS:'),
-                Text('4-6'),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-    // #enddocregion iconList
-
-    // #docregion leftColumn
-    final leftColumn = Container(
-      padding: EdgeInsets.fromLTRB(20, 30, 20, 20),
-      child: Column(
-        children: [
-          titleText,
-          subTitle,
-          ratings,
-          iconList,
-        ],
-      ),
-    );
-    // #enddocregion leftColumn
-
-    final mainImage = Image.asset(
-      'images/pavlova.jpg',
-      fit: BoxFit.cover,
-    );
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      // #docregion body
-      body: Center(
-        child: Container(
-          margin: EdgeInsets.fromLTRB(0, 40, 0, 30),
-          height: 600,
-          child: Card(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 440,
-                  child: leftColumn,
-                ),
-                mainImage,
-              ],
-            ),
-          ),
-        ),
-      ),
-      // #enddocregion body
-    );
-  }
+  Widget _buildImageRow(int imageIndex) => Row(
+    children: [
+      _buildDecoratedImage(imageIndex),
+      _buildDecoratedImage(imageIndex + 1),
+    ],
+  );
 }
